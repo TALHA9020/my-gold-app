@@ -1,0 +1,6 @@
+{
+  "appId": "com.talha.myapp",
+  "appName": "MyGoldApp",
+  "webDir": "www",
+  "bundledWebRuntime": false
+}
