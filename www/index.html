@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Hardware Tester Pro</title>
+    <style>
+        :root { --gold: #ffd700; --dark: #121212; --card: #1e1e1e; }
+        body {
+            background-color: var(--dark); color: white;
+            font-family: sans-serif; margin: 0; padding: 20px;
+            display: flex; flex-direction: column; align-items: center; direction: rtl;
+        }
+        .header { text-align: center; margin-bottom: 20px; }
+        .header h1 { color: var(--gold); margin: 0; font-size: 28px; }
+        .header p { color: #888; font-size: 14px; }
+
+        .grid {
+            display: grid; grid-template-columns: 1 service/ 1fr;
+            gap: 15px; width: 100%; max-width: 400px;
+        }
+        .btn {
+            background: var(--card); border: 1px solid #333;
+            color: white; padding: 20px; border-radius: 12px;
+            font-size: 18px; font-weight: bold; cursor: pointer;
+            display: flex; align-items: center; justify-content: space-between;
+            transition: 0.3s;
+        }
+        .btn:active { transform: scale(0.96); border-color: var(--gold); background: #252525; }
+        .icon { font-size: 24px; }
+        .status-bar {
+            margin-top: 30px; width: 100%; max-width: 400px;
+            padding: 15px; background: #000; border-radius: 8px;
+            border-right: 4px solid var(--gold); font-size: 13px; color: #0f0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>ہارڈ ویئر ٹیسٹر</h1>
+        <p>فون کے فیچرز چیک کریں</p>
+    </div>
+
+    <div class="grid">
+        <button class="btn" onclick="log('کیمرہ کھل رہا ہے...')">
+            <span>کیمرہ ٹیسٹ</span> <span class="icon">📷</span>
+        </button>
+
+        <button class="btn" onclick="log('مائیک ریکارڈنگ شروع...')">
+            <span>مائیک (آواز)</span> <span class="icon">🎤</span>
+        </button>
+
+        <button class="btn" onclick="log('فائل میجر / گیلری ایکسس...')">
+            <span>میموری ایکسس</span> <span class="icon">📁</span>
+        </button>
+
+        <button class="btn" onclick="log('لوکیشن معلوم کی جا رہی ہے...')">
+            <span>GPS لوکیشن</span> <span class="icon">📍</span>
+        </button>
+
+        <button class="btn" onclick="vibrateDevice()">
+            <span>وائبریشن ٹیسٹ</span> <span class="icon">📳</span>
+        </button>
+
+        <button class="btn" onclick="playSound()">
+            <span>سپیکر / آواز</span> <span class="icon">🔊</span>
+        </button>
+    </div>
+
+    <div class="status-bar" id="console">رپورٹ: سسٹم تیار ہے...</div>
+
+    <script>
+        function log(msg) {
+            const con = document.getElementById('console');
+            con.innerText = "رپورٹ: " + msg;
+            alert(msg);
+        }
+
+        function vibrateDevice() {
+            if (navigator.vibrate) {
+                navigator.vibrate(200);
+                log("فون وائبریٹ ہوا!");
+            } else {
+                log("آپ کا براؤزر وائبریشن سپورٹ نہیں کرتا۔");
+            }
+        }
+
+        function playSound() {
+            log("آواز پلے کی جا رہی ہے...");
+            // یہاں آپ کوئی بھی چھوٹا سا ساؤنڈ لنک ڈال سکتے ہیں
+            let audio = new Audio('https://www.soundjay.com/buttons/beep-01a.mp3');
+            audio.play();
+        }
+    </script>
+
+</body>
+</html>
